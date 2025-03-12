@@ -2,18 +2,30 @@ import java.util.*;
 
 public class Main {
     static void reverseDisplayLoop(int n){
+        //Takes a number as an input and prints it backwards
+        //loops and prints the first digit in the number, while the number is greater than 0
         while(n > 0){
+            //creates a new number by dividing the number by ten, and truncating it to an integer.   125 -> 12.5 -> 12
             int newnum = n/10;
+            //prints the number minus the new number times 10.   125 - 12(10) = 5 which is the last number.
             System.out.print(n - newnum*10);
+            //Sets the number to the new number.   number = 12
             n = newnum;
+            //Then it repeats until the number is 0.   (12 -> 1.2 -> 1,  12 - 1(10) = 2,  number = 1) (1 -> 0.1 -> 0,  1 - 0(10) = 1, number = 0)  end loop
         }
         System.out.println("");
     }
     static void reverseDisplayRecursion(int n){
+        //Takes a number as an input and prints it backwards recursively
+        //checks if the number is greater than zero, this is the end condition of the recursion
         if(n > 0){
+            //Finds the number of digits and creates a power of ten with the same number of digits.   log(125) -> 2.0969 -> 2,  10^2 = 100
             int dig = (int)(Math.pow(10,(int)Math.log10(n)));
+            //Finds the first number by dividing the number by the power of ten, and then truncating it into an integer. 125/100 -> 1.25 -> 1
             int firstnum = n/dig;
+            //Repeats this process with the first number removed. 125 - 1(100) = 25
             reverseDisplayRecursion(n - (firstnum * dig));
+            //Prints the first number, as this is after the recursion call, this will be printed last.
             System.out.print(firstnum);
 
         }
